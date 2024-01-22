@@ -28,3 +28,24 @@ fun isAnagram(str1: String, str2: String): Boolean {
     return str1.toList().sorted() == str2.toList().sorted()
 }
 
+// Solution 2
+fun isAnagramWithFreqMao(str1: String, str2: String): Boolean {
+    if (str1.length != str2.length) {
+        return false
+    }
+
+    val frequencyMap1 = buildFreqMap(str1)
+    val frequencyMap2 = buildFreqMap(str2)
+
+    return frequencyMap1 == frequencyMap2
+}
+
+fun buildFreqMap(string: String): Map<Char, Int> {
+    val frequencyMap = mutableMapOf<Char, Int>()
+
+    for (char in string) {
+        frequencyMap[char] = frequencyMap.getOrDefault(char, 0) + 1
+    }
+
+    return frequencyMap
+}
